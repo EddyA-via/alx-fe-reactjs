@@ -9,3 +9,4 @@ function WelcomeMessage() {
 }
 
 export default WelcomeMessage;
+Add WelcomeMessage component with JSX updates
