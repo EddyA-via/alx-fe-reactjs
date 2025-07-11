@@ -1,9 +1,12 @@
+import WelcomeMessage from './components/WelcomeMessage';
+
 function App() {
   return (
-    <div>
-      <h1>Hello React from ALX!</h1>
-    </div>
+    <>
+      <WelcomeMessage />
+    </>
   );
 }
 
 export default App;
+Use WelcomeMessage component in App
