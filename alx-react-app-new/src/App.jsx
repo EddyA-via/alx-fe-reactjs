@@ -17,3 +17,4 @@ function App() {
 }
 
 export default App;
+feat: integrate Counter and UserProfile components into App
