@@ -1,10 +1,12 @@
+import React from 'react';
+
 function Footer() {
-    return (
-        <footer>
-            <p>© 2023 City Lovers</p>
-        </footer>
-    );
+  return (
+    <footer style={{ backgroundColor: '#333', color: 'white', textAlign: 'center', padding: '15px' }}>
+      <p>© 2025 My Favorite Cities</p>
+    </footer>
+  );
 }
 
 export default Footer;
-Add Footer component
+style: add inline styles to Footer.jsx
