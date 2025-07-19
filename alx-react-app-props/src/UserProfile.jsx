@@ -14,4 +14,4 @@ function UserProfile() {
 }
 
 export default UserProfile;
-
+delete UserProfile.jsx
