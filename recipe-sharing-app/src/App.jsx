@@ -1,38 +1,39 @@
 import React, { useEffect } from 'react';
-import AddRecipeForm from './components/AddRecipeForm';
-import RecipeList from './components/RecipeList';
-import SearchBar from './components/SearchBar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useRecipeStore } from './store/recipeStore';
+import RecipeList from './components/RecipeList';
+import AddRecipeForm from './components/AddRecipeForm';
+import EditRecipeForm from './components/EditRecipeForm';
+import RecipeDetails from './components/RecipeDetails';
+import SearchBar from './components/SearchBar';
 
 const App = () => {
-  const setRecipes = useRecipeStore((state) => state.setRecipes);
+  const recipes = useRecipeStore((state) => state.recipes);
+  const filterRecipes = useRecipeStore((state) => state.filterRecipes);
+  const searchTerm = useRecipeStore((state) => state.searchTerm);
 
-  // Load sample data
+  // Update filtered recipes whenever search term or recipes change
   useEffect(() => {
-    const sampleRecipes = [
-      {
-        id: 1,
-        title: 'Spaghetti Bolognese',
-        description: 'Classic Italian pasta dish with meat sauce.',
-        ingredients: 'spaghetti, beef, tomato',
-      },
-      {
-        id: 2,
-        title: 'Chicken Stir Fry',
-        description: 'Quick stir-fry with vegetables.',
-        ingredients: 'chicken, soy sauce, broccoli, carrot',
-      },
-    ];
-    setRecipes(sampleRecipes);
-  }, [setRecipes]);
+    filterRecipes();
+  }, [searchTerm, recipes, filterRecipes]);
 
   return (
-    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
-      <h1>Recipe Sharing App</h1>
-      <SearchBar />
-      <AddRecipeForm />
-      <RecipeList />
-    </div>
+    <Router>
+      <div>
+        <h1>Recipe Sharing App</h1>
+        <SearchBar />
+        <Routes>
+          <Route path="/" element={
+            <div>
+              <AddRecipeForm />
+              <RecipeList />
+            </div>
+          } />
+          <Route path="/recipes/:id" element={<RecipeDetails />} />
+          <Route path="/edit/:id" element={<EditRecipeForm />} />
+        </Routes>
+      </div>
+    </Router>
   );
 };
 
