@@ -8,8 +8,8 @@ const EditRecipeForm = ({ recipe }) => {
   const updateRecipe = useRecipeStore((state) => state.updateRecipe);
   const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = (event) => {
+    event.preventDefault(); // 
     updateRecipe({ ...recipe, title, description });
     navigate(`/recipe/${recipe.id}`);
   };
@@ -17,7 +17,7 @@ const EditRecipeForm = ({ recipe }) => {
   return (
     <form onSubmit={handleSubmit}>
       <h2>Edit Recipe</h2>
-      <p><strong>Recipe ID:</strong> {recipe.id}</p> {/* ✅ Ensure recipe.id is referenced */}
+      <p><strong>Recipe ID:</strong> {recipe.id}</p>
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
