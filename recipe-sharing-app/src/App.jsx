@@ -1,18 +1,39 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import AddRecipeForm from './components/AddRecipeForm';
 import RecipeList from './components/RecipeList';
-import RecipeDetails from './components/RecipeDetails';
+import SearchBar from './components/SearchBar';
+import { useRecipeStore } from './store/recipeStore';
 
-function App() {
+const App = () => {
+  const setRecipes = useRecipeStore((state) => state.setRecipes);
+
+  // Load sample data
+  useEffect(() => {
+    const sampleRecipes = [
+      {
+        id: 1,
+        title: 'Spaghetti Bolognese',
+        description: 'Classic Italian pasta dish with meat sauce.',
+        ingredients: 'spaghetti, beef, tomato',
+      },
+      {
+        id: 2,
+        title: 'Chicken Stir Fry',
+        description: 'Quick stir-fry with vegetables.',
+        ingredients: 'chicken, soy sauce, broccoli, carrot',
+      },
+    ];
+    setRecipes(sampleRecipes);
+  }, [setRecipes]);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<RecipeList />} />
-        <Route path="/add" element={<AddRecipeForm />} />
-        <Route path="/recipe/:id" element={<RecipeDetails />} />
-      </Routes>
-    </Router>
+    <div style={{ maxWidth: '600px', margin: '0 auto' }}>
+      <h1>Recipe Sharing App</h1>
+      <SearchBar />
+      <AddRecipeForm />
+      <RecipeList />
+    </div>
   );
-}
+};
 
 export default App;
