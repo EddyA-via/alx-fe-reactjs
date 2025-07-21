@@ -19,6 +19,7 @@ const RecipeDetails = () => {
       {!editing ? (
         <>
           <h1>{recipe.title}</h1>
+          <p><strong>ID:</strong> {recipe.id}</p> {/* ✅ Ensure recipe.id is shown */}
           <p>{recipe.description}</p>
           <button onClick={() => setEditing(true)}>Edit</button>
           <DeleteRecipeButton id={id} />
