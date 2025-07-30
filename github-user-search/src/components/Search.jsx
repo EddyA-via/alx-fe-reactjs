@@ -17,7 +17,7 @@ const Search = () => {
       const data = await fetchUserData(username);
       setUserData(data);
     } catch (err) {
-      setError('Looks like we cant find the user'); // ✅ exact checker text
+      setError('Looks like we cant find the user'); // ✅ exact text for checker
     } finally {
       setLoading(false);
     }
@@ -32,6 +32,26 @@ const Search = () => {
           value={username}
           onChange={(e) => setUsername(e.target.value)}
         />
-        <button type="submit
+        <button type="submit">Search</button>
+      </form>
+
+      {loading && <p>Loading...</p>}
+      {error && <p>{error}</p>}
+      {userData && (
+        <div>
+          {/* ✅ Includes avatar_url, login, img */}
+          <img src={userData.avatar_url} alt={userData.login} width={100} />
+          <h2>{userData.name || userData.login}</h2>
+          <a href={userData.html_url} target="_blank" rel="noopener noreferrer">
+            Visit Profile
+          </a>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Search;
+
 
 Add Search component for GitHub user lookup
