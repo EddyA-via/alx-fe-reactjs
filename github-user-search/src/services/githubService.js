@@ -17,3 +17,4 @@ export const fetchUserData = async (username) => {
     throw error;
   }
 };
+Add githubService.js to fetch user data from GitHub API
