@@ -1,16 +1,7 @@
 import axios from 'axios';
 
-/**
- * Fetch users from GitHub based on advanced search criteria
- * @param {Object} params - Search parameters
- * @param {string} params.query - Username or keyword
- * @param {string} params.location - Filter by location
- * @param {number} params.minRepos - Minimum number of public repositories
- * @returns {Array} List of matching users
- */
 export const fetchUserData = async ({ query, location, minRepos }) => {
   try {
-    // Build advanced search query
     let q = query;
     if (location) {
       q += `+location:${location}`;
@@ -27,4 +18,4 @@ export const fetchUserData = async ({ query, location, minRepos }) => {
   }
 };
 
-Add githubService.js to fetch user data from GitHub API
+
