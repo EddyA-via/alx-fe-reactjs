@@ -1,20 +1,14 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://api.github.com/users';
+export const fetchAdvancedUserSearch = async ({ username, location, minRepos }) => {
+  let query = `${username}`;
+  if (location) query += `+location:${location}`;
+  if (minRepos) query += `+repos:>=${minRepos}`;
 
-/**
- * Fetch GitHub user data by username.
- * 
- * @param {string} username - GitHub username to search.
- * @returns {Promise<Object>} - GitHub user data.
- * @throws Will throw an error if the request fails.
- */
-export const fetchUserData = async (username) => {
-  try {
-    const response = await axios.get(`${BASE_URL}/${username}`);
-    return response.data;
-  } catch (error) {
-    throw error;
-  }
+  const url = `https://api.github.com/search/users?q=${query}`;
+
+  const response = await axios.get(url);
+  return response.data;
 };
+
 Add githubService.js to fetch user data from GitHub API
