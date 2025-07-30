@@ -1,12 +1,11 @@
-import React from 'react';
+import Search from './components/Search';
 
-const App = () => {
+function App() {
   return (
-    <div style={{ padding: "2rem", fontFamily: "Arial, sans-serif" }}>
-      <h1>GitHub User Search</h1>
-      <p>Start typing a GitHub username to search...</p>
+    <div className="min-h-screen bg-gray-100">
+      <Search />
     </div>
   );
-};
+}
 
 export default App;
