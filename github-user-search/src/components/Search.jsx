@@ -33,18 +33,28 @@ const Search = () => {
           placeholder="Search GitHub users"
           className="border p-2 w-full rounded"
         />
-        <button type="submit" className="bg-blue-600 text-white mt-2 px-4 py-2 rounded">
+        <button
+          type="submit"
+          className="bg-blue-600 text-white mt-2 px-4 py-2 rounded"
+        >
           Search
         </button>
       </form>
 
       {loading && <p>Loading...</p>}
-      {error && <p>Looks like we cant find the user</p>}
+      {error && <p>Looks like we can't find the user.</p>}
 
       <div className="grid gap-4">
         {users.map((user) => (
-          <div key={user.id} className="border p-4 rounded flex items-center gap-4">
-            <img src={user.avatar_url} alt={user.login} className="w-16 h-16 rounded-full" />
+          <div
+            key={user.id}
+            className="border p-4 rounded flex items-center gap-4"
+          >
+            <img
+              src={user.avatar_url}
+              alt={user.login}
+              className="w-16 h-16 rounded-full"
+            />
             <div>
               <h3 className="text-lg font-bold">{user.login}</h3>
               <a
@@ -64,6 +74,3 @@ const Search = () => {
 };
 
 export default Search;
-
-
-
