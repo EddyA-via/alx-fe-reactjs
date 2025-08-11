@@ -18,3 +18,21 @@ This app allows users to:
 ---
 
 ## 📂 Project Structure
+recipe-sharing-platform/
+│
+├── src/
+│ ├── components/
+│ │ ├── HomePage.jsx
+│ │ ├── RecipeDetail.jsx
+│ │ ├── AddRecipeForm.jsx
+│ ├── data.json
+│ ├── App.jsx
+│ ├── main.jsx
+│ ├── index.css
+│
+├── package.json
+├── vite.config.js
+├── tailwind.config.js
+├── postcss.config.js
+└── README.md
+
