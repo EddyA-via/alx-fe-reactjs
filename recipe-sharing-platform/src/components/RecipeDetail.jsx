@@ -1,44 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import data from "../data.json"; // adjust the path if your data.json is in public
 
 const RecipeDetail = () => {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
 
   useEffect(() => {
-    // Example: Fetching recipe details (replace with your actual logic)
-    const fetchRecipe = async () => {
-      try {
-        const response = await fetch(`/api/recipes/${id}`);
-        const data = await response.json();
-        setRecipe(data);
-      } catch (error) {
-        console.error("Error fetching recipe:", error);
-      }
-    };
-    fetchRecipe();
+    // Simulating fetch from data.json
+    const foundRecipe = data.find((item) => String(item.id) === id);
+    setRecipe(foundRecipe);
   }, [id]);
 
   if (!recipe) {
-    return <div className="p-4 text-center">Loading recipe...</div>;
+    return <div className="p-4">Loading...</div>;
   }
 
   return (
-    <div className="max-w-3xl mx-auto p-4">
-      <h1 className="text-3xl font-bold mb-4">{recipe.title}</h1>
-      <img
-        src={recipe.image}
-        alt={recipe.title}
-        className="w-full h-64 object-cover rounded-lg mb-6"
-      />
-      <h2 className="text-xl font-semibold mb-2">Ingredients</h2>
-      <ul className="list-disc pl-5 mb-6">
+    <div className="p-4">
+      <h1 className="text-2xl font-bold">{recipe.name}</h1>
+      <p className="mt-2">{recipe.description}</p>
+
+      <h2 className="text-xl mt-4 font-semibold">Ingredients</h2>
+      <ul className="list-disc list-inside">
         {recipe.ingredients.map((ingredient, index) => (
           <li key={index}>{ingredient}</li>
         ))}
       </ul>
-      <h2 className="text-xl font-semibold mb-2">Instructions</h2>
-      <p className="leading-relaxed">{recipe.instructions}</p>
     </div>
   );
 };
