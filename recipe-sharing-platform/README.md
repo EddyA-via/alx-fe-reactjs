@@ -1,4 +1,4 @@
-# Recipe Sharing Platform
+README.md# Recipe Sharing Platform
 
 A simple and responsive Recipe Sharing Platform built with **React**, **Vite**, and **Tailwind CSS**.  
 This app allows users to:
