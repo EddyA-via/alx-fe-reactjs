@@ -2,18 +2,29 @@
 import React, { useState } from "react";
 
 export default function TestingComponent() {
-  const [count, setCount] = useState(0);
+  const [text, setText] = useState("");
+  const [submitted, setSubmitted] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setSubmitted(text);
+    setText("");
+  };
 
   return (
     <div data-testid="testing-component">
       <h2>Testing Component</h2>
-      <p data-testid="count">Count: {count}</p>
-      <button onClick={() => setCount(count + 1)} data-testid="increment-btn">
-        Increment
-      </button>
-      <button onClick={() => setCount(count - 1)} data-testid="decrement-btn">
-        Decrement
-      </button>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="text"
+          placeholder="Type something"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          data-testid="input-field"
+        />
+        <button type="submit" data-testid="submit-btn">Submit</button>
+      </form>
+      {submitted && <p data-testid="submitted-text">You submitted: {submitted}</p>}
     </div>
   );
 }
