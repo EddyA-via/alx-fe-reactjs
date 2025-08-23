@@ -6,7 +6,8 @@ import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
-import BlogPost from "./components/BlogPost";   // ✅ import BlogPost
+import BlogPost from "./components/BlogPost";
+import Profile from "./components/Profile";   // ✅ import Profile
 
 export default function App() {
   return (
@@ -28,6 +29,9 @@ export default function App() {
 
           {/* ✅ Blog dynamic route */}
           <Route path="/blog/:id" element={<BlogPost />} />
+
+          {/* ✅ Profile route */}
+          <Route path="/profile/*" element={<Profile />} />
         </Routes>
       </Router>
     </AuthProvider>
