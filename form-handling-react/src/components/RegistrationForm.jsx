@@ -1,58 +1,56 @@
 import { useState } from "react";
 
 export default function RegistrationForm() {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: ""
-  });
-
-  const [error, setError] = useState("");
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!formData.username || !formData.email || !formData.password) {
-      setError("All fields are required!");
-      return;
-    }
-    setError("");
-    console.log("Submitted:", formData);
+    console.log("Form submitted:", { username, email, password });
+    // Reset form
+    setUsername("");
+    setEmail("");
+    setPassword("");
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <h2>Controlled Registration Form</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <input
-        type="text"
-        name="username"
-        placeholder="Username"
-        value={formData.username}
-        onChange={handleChange}
-      />
-      <br />
-      <input
-        type="email"
-        name="email"
-        placeholder="Email"
-        value={formData.email}
-        onChange={handleChange}
-      />
-      <br />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        value={formData.password}
-        onChange={handleChange}
-      />
-      <br />
-      <button type="submit">Register</button>
-    </form>
-  );
-}
+    <form onSubmit={handleSubmit} className="space-y-4">
+      <div>
+        <label className="block font-medium">Username</label>
+        <input
+          type="text"
+          value={username}         {/* ✅ controlled input */}
+          onChange={(e) => setUsername(e.target.value)}
+          className="border p-2 rounded w-full"
+          placeholder="Enter username"
+        />
+      </div>
+
+      <div>
+        <label className="block font-medium">Email</label>
+        <input
+          type="email"
+          value={email}            {/* ✅ controlled input */}
+          onChange={(e) => setEmail(e.target.value)}
+          className="border p-2 rounded w-full"
+          placeholder="Enter email"
+        />
+      </div>
+
+      <div>
+        <label className="block font-medium">Password</label>
+        <input
+          type="password"
+          value={password}         {/* ✅ controlled input */}
+          onChange={(e) => setPassword(e.target.value)}
+          className="border p-2 rounded w-full"
+          placeholder="Enter password"
+        />
+      </div>
+
+      <button
+        type="submit"
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+      >
+        Register
