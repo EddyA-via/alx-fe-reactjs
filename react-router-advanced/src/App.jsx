@@ -1,38 +1,32 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+// src/App.jsx
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/Home";
+import About from "./components/About";
 import Profile from "./components/Profile";
-import ProfileDetails from "./components/ProfileDetails";
-import ProfileSettings from "./components/ProfileSettings";
-import Login from "./components/Login";
-
-const isAuthenticated = false; // toggle this to test
-
-function ProtectedRoute({ children }) {
-  return isAuthenticated ? children : <Navigate to="/login" />;
-}
+import BlogPost from "./components/BlogPost";
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
+    <Router>
+      <div className="p-6">
+        <nav className="space-x-4">
+          <Link to="/" className="text-blue-600 hover:underline">Home</Link>
+          <Link to="/about" className="text-blue-600 hover:underline">About</Link>
+          <Link to="/profile/johndoe" className="text-blue-600 hover:underline">Profile</Link>
+          <Link to="/blog/123" className="text-blue-600 hover:underline">Blog</Link>
+        </nav>
 
-        <Route path="/login" element={<Login />} />
-
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <Profile />
-            </ProtectedRoute>
-          }
-        >
-          <Route path="details" element={<ProfileDetails />} />
-          <Route path="settings" element={<ProfileSettings />} />
-        </Route>
-
-        <Route path="/post/:id" element={<h2>Dynamic Post Page</h2>} />
-      </Routes>
-    </BrowserRouter>
+        <div className="mt-6">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/profile/:username/*" element={<Profile />} />
+            {/* ✅ Added dynamic blog post route */}
+            <Route path="/blog/:id" element={<BlogPost />} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
 }
