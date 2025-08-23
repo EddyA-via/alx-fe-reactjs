@@ -1,17 +1,14 @@
+// src/components/ProtectedRoute.jsx
 import React from "react";
 import { Navigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";  // <-- ensure this is here
 
-/**
- * A wrapper for protected routes
- * @param {JSX.Element} children - The component to render if authenticated
- * @param {boolean} isAuthenticated - Authentication state
- */
-export default function ProtectedRoute({ children, isAuthenticated }) {
-  if (!isAuthenticated) {
-    // Redirect unauthenticated users to login
+export default function ProtectedRoute({ children }) {
+  const { user } = useAuth();   // <-- ensure we’re using the hook
+
+  if (!user) {
     return <Navigate to="/login" replace />;
   }
 
-  // Otherwise, render the protected component
   return children;
 }
