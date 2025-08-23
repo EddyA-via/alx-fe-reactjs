@@ -16,14 +16,14 @@ export default function PostsComponent() {
     isLoading,
     isError,
     error,
+    refetch, // ✅ so we can use it with button onClick
   } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
-    // ✅ Required options
-    cacheTime: 1000 * 60 * 5,          // 5 minutes
-    staleTime: 1000 * 30,              // 30 seconds
-    refetchOnWindowFocus: true,        // Refetch on focus
-    keepPreviousData: true,            // Keep old data while fetching new
+    cacheTime: 1000 * 60 * 5,
+    staleTime: 1000 * 30,
+    refetchOnWindowFocus: true,
+    keepPreviousData: true,
   });
 
   if (isLoading) {
@@ -37,14 +37,17 @@ export default function PostsComponent() {
   return (
     <div>
       <h2 className="text-xl font-bold mb-2">Posts</h2>
+
+      {/* ✅ Button with onClick */}
+      <button
+        onClick={() => refetch()}
+        className="px-4 py-2 mb-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+      >
+        Refetch Posts
+      </button>
+
       <ul className="list-disc pl-6">
         {data.slice(0, 10).map((post) => (
           <li key={post.id} className="mb-2">
             <strong>{post.title}</strong>
             <p>{post.body}</p>
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
-}
