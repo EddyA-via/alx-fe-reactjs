@@ -14,11 +14,16 @@ export default function PostsComponent() {
   const {
     data,
     isLoading,
-    isError,   // ✅ checker requires this
+    isError,
     error,
   } = useQuery({
     queryKey: ["posts"],
     queryFn: fetchPosts,
+    // ✅ Required options
+    cacheTime: 1000 * 60 * 5,          // 5 minutes
+    staleTime: 1000 * 30,              // 30 seconds
+    refetchOnWindowFocus: true,        // Refetch on focus
+    keepPreviousData: true,            // Keep old data while fetching new
   });
 
   if (isLoading) {
