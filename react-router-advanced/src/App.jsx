@@ -4,8 +4,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
-import ProtectedRoute from "./components/ProtectedRoute"; // <-- ✅ import it
+import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/AuthContext";
+import BlogPost from "./components/BlogPost";   // ✅ import BlogPost
 
 export default function App() {
   return (
@@ -15,7 +16,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
 
-          {/* ✅ Protected Route example */}
+          {/* ✅ Protected Route */}
           <Route
             path="/dashboard"
             element={
@@ -24,6 +25,9 @@ export default function App() {
               </ProtectedRoute>
             }
           />
+
+          {/* ✅ Blog dynamic route */}
+          <Route path="/blog/:id" element={<BlogPost />} />
         </Routes>
       </Router>
     </AuthProvider>
